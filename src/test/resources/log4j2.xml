@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="INFO">
+    <Appenders>
+        <Console name="StartUp" target="SYSTEM_OUT">
+            <PatternLayout
+                    pattern="[%-5level] TEST %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n" />
+        </Console>
+        <Kafka name="AdvencedKafkaAppender" topic="selam-bro-naber-lan">
+            <PatternLayout pattern="%date %message"/>
+            <Property name="bootstrap.servers">localhost:9092</Property>
+        </Kafka>
+    </Appenders>
+    <Loggers>
+        <Root level="debug" additivity="false">
+            <AppenderRef ref="AdvencedKafkaAppender" />
+        </Root>
+    </Loggers>
+</Configuration>
