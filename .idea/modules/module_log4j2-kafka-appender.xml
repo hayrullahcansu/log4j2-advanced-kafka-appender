@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_log4j2-kafka-appender" default="compile.module.log4j2-kafka-appender">
+  <dirname property="module.log4j2-kafka-appender.basedir" file="${ant.file.module_log4j2-kafka-appender}"/>
+  
+  <property name="module.jdk.home.log4j2-kafka-appender" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.log4j2-kafka-appender" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.log4j2-kafka-appender" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.log4j2-kafka-appender" value="-encoding UTF-8 -source 8 -target 8 ${compiler.args}"/>
+  
+  <property name="log4j2-kafka-appender.output.dir" value="${module.log4j2-kafka-appender.basedir}/../../out/production/log4j2-kafka-appender"/>
+  <property name="log4j2-kafka-appender.testoutput.dir" value="${module.log4j2-kafka-appender.basedir}/../../out/test/log4j2-kafka-appender"/>
+  
+  <path id="log4j2-kafka-appender.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="log4j2-kafka-appender.module.production.classpath">
+    <path refid="${module.jdk.classpath.log4j2-kafka-appender}"/>
+  </path>
+  
+  <path id="log4j2-kafka-appender.runtime.production.module.classpath">
+    <pathelement location="${log4j2-kafka-appender.output.dir}"/>
+  </path>
+  
+  <path id="log4j2-kafka-appender.module.classpath">
+    <path refid="${module.jdk.classpath.log4j2-kafka-appender}"/>
+    <pathelement location="${log4j2-kafka-appender.output.dir}"/>
+  </path>
+  
+  <path id="log4j2-kafka-appender.runtime.module.classpath">
+    <pathelement location="${log4j2-kafka-appender.testoutput.dir}"/>
+    <pathelement location="${log4j2-kafka-appender.output.dir}"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.log4j2-kafka-appender">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.log4j2-kafka-appender">
+    <patternset refid="excluded.from.module.log4j2-kafka-appender"/>
+  </patternset>
+  
+  
+  <target name="compile.module.log4j2-kafka-appender" depends="compile.module.log4j2-kafka-appender.production,compile.module.log4j2-kafka-appender.tests" description="Compile module log4j2-kafka-appender"/>
+  
+  <target name="compile.module.log4j2-kafka-appender.production" depends="register.custom.compilers" description="Compile module log4j2-kafka-appender; production classes"/>
+  
+  <target name="compile.module.log4j2-kafka-appender.tests" depends="register.custom.compilers,compile.module.log4j2-kafka-appender.production" description="compile module log4j2-kafka-appender; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.log4j2-kafka-appender" description="cleanup module">
+    <delete dir="${log4j2-kafka-appender.output.dir}"/>
+    <delete dir="${log4j2-kafka-appender.testoutput.dir}"/>
+  </target>
+</project>

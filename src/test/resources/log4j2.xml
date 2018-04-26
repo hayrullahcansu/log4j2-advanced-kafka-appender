@@ -1,18 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Configuration status="INFO">
+<Configuration status="debug" strict="true" name="XMLConfigTest"
+               packages="org.apache.logging.log4j.kafka.appender">
+    <Properties>
+        <Property name="filename">target/test.log</Property>
+    </Properties>
+    <Filter type="ThresholdFilter" level="trace"/>
+
     <Appenders>
-        <Console name="StartUp" target="SYSTEM_OUT">
-            <PatternLayout
-                    pattern="[%-5level] TEST %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n" />
-        </Console>
-        <Kafka name="AdvencedKafkaAppender" topic="selam-bro-naber-lan">
+        <Hayro name="Hayro" topic="log-test">
             <PatternLayout pattern="%date %message"/>
             <Property name="bootstrap.servers">localhost:9092</Property>
-        </Kafka>
+        </Hayro>
     </Appenders>
     <Loggers>
-        <Root level="debug" additivity="false">
-            <AppenderRef ref="AdvencedKafkaAppender" />
+        <Root level="DEBUG">
+            <AppenderRef ref="Kafka"/>
         </Root>
+        <Logger name="org.apache.kafka" level="INFO"/> <!-- avoid recursive logging -->
     </Loggers>
 </Configuration>

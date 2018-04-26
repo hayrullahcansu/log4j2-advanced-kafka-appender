@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="kafka-appender">
+    <output-path>$PROJECT_DIR$/out/artifacts/kafka_appender</output-path>
+    <root id="archive" name="kafka-appender.jar">
+      <element id="module-output" name="log4j2-kafka-appender_main" />
+    </root>
+  </artifact>
+</component>
