@@ -32,11 +32,14 @@ import org.apache.logging.log4j.core.appender.AbstractAppender;
 import org.apache.logging.log4j.core.config.Configuration;
 import org.apache.logging.log4j.core.config.Node;
 import org.apache.logging.log4j.core.config.Property;
-import org.apache.logging.log4j.core.config.plugins.Plugin;
-import org.apache.logging.log4j.core.config.plugins.PluginAttribute;
-import org.apache.logging.log4j.core.config.plugins.PluginBuilderFactory;
-import org.apache.logging.log4j.core.config.plugins.PluginElement;
+import org.apache.logging.log4j.core.config.plugins.*;
+import org.apache.logging.log4j.core.config.plugins.validation.constraints.Required;
+import org.apache.logging.log4j.core.layout.AbstractStringLayout;
+import org.apache.logging.log4j.core.layout.Encoder;
 import org.apache.logging.log4j.core.layout.SerializedLayout;
+
+import static org.apache.logging.log4j.core.layout.PatternLayout.DEFAULT_CONVERSION_PATTERN;
+import static org.apache.logging.log4j.core.layout.PatternLayout.newSerializerBuilder;
 
 /**
  * Sends log events to an Apache Kafka topic.
@@ -44,23 +47,33 @@ import org.apache.logging.log4j.core.layout.SerializedLayout;
 @Plugin(name = "AdvancedKafka", category = Node.CATEGORY, elementType = Appender.ELEMENT_TYPE, printObject = true)
 public final class AdvancedKafkaAppender extends AbstractAppender {
 
+
+
+    private AbstractStringLayout.Serializer eventSerializer;
+
+
     /**
      * Builds AdvancedKafkaAppender instances.
+     *
      * @param <B> The type to build
      */
     public static class Builder<B extends Builder<B>> extends AbstractAppender.Builder<B>
             implements org.apache.logging.log4j.core.util.Builder<AdvancedKafkaAppender> {
 
-        @PluginAttribute("topic") 
+        @PluginAttribute("topic")
         private String topic;
+
+        @PluginBuilderAttribute
+        @Required
+        private String topicPattern;
 
         @PluginAttribute("key")
         private String key;
-        
+
         @PluginAttribute(value = "syncSend", defaultBoolean = true)
         private boolean syncSend;
 
-        @PluginElement("Properties") 
+        @PluginElement("Properties")
         private Property[] properties;
 
         @SuppressWarnings("resource")
@@ -103,14 +116,14 @@ public final class AdvancedKafkaAppender extends AbstractAppender {
             return asBuilder();
         }
     }
-    
+
     @Deprecated
     public static AdvancedKafkaAppender createAppender(
             final Layout<? extends Serializable> layout,
             final Filter filter,
             final String name,
             final boolean ignoreExceptions,
-            final String topic,
+            final String topicPattern,
             final Property[] properties,
             final Configuration configuration,
             final String key) {
@@ -120,12 +133,13 @@ public final class AdvancedKafkaAppender extends AbstractAppender {
             return null;
         }
         final AdvancedKafkaManager advancedKafkaManager =
-                new AdvancedKafkaManager(configuration.getLoggerContext(), name, topic, true, properties, key);
+                new AdvancedKafkaManager(configuration.getLoggerContext(), name, topicPattern, true, properties, key);
         return new AdvancedKafkaAppender(name, layout, filter, ignoreExceptions, advancedKafkaManager);
     }
 
     /**
      * Creates a builder for a AdvancedKafkaAppender.
+     *
      * @return a builder for a AdvancedKafkaAppender.
      */
     @PluginBuilderFactory
@@ -139,6 +153,14 @@ public final class AdvancedKafkaAppender extends AbstractAppender {
                                   final boolean ignoreExceptions, final AdvancedKafkaManager manager) {
         super(name, filter, layout, ignoreExceptions);
         this.manager = Objects.requireNonNull(manager, "manager");
+
+        this.eventSerializer = newSerializerBuilder()
+                .setAlwaysWriteExceptions(true)
+                .setDisableAnsi(false)
+                .setNoConsoleNoAnsi(false)
+                .setPattern(topicPattern)
+                .setDefaultPattern(DEFAULT_CONVERSION_PATTERN)
+                .build();
         System.out.println("hayro reis reis reis");
     }
 
@@ -158,6 +180,7 @@ public final class AdvancedKafkaAppender extends AbstractAppender {
     private void tryAppend(final LogEvent event) throws ExecutionException, InterruptedException, TimeoutException {
         final Layout<? extends Serializable> layout = getLayout();
         byte[] data;
+        String topic = "";
         if (layout instanceof SerializedLayout) {
             final byte[] header = layout.getHeader();
             final byte[] body = layout.toByteArray(event);
@@ -167,7 +190,7 @@ public final class AdvancedKafkaAppender extends AbstractAppender {
         } else {
             data = layout.toByteArray(event);
         }
-        manager.send(data);
+        manager.send(getTopic(event), data);
     }
 
     @Override
@@ -188,9 +211,13 @@ public final class AdvancedKafkaAppender extends AbstractAppender {
     @Override
     public String toString() {
         return "AdvancedKafkaAppender{" +
-            "name=" + getName() +
-            ", state=" + getState() +
-            ", topic=" + manager.getTopic() +
-            '}';
+                "name=" + getName() +
+                ", state=" + getState() +
+                ", topic=" + manager.getTopicPattern() +
+                '}';
+    }
+
+    private String getTopic(final LogEvent event) {
+        return eventSerializer.toSerializable(event);
     }
 }

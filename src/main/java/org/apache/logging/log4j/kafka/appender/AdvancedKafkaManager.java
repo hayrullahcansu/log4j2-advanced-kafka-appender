@@ -47,14 +47,14 @@ public class AdvancedKafkaManager extends AbstractManager {
     private Producer<byte[], byte[]> producer;
     private final int timeoutMillis;
 
-    private final String topic;
+    private final String topicPattern;
     private final String key;
     private final boolean syncSend;
 
-    public AdvancedKafkaManager(final LoggerContext loggerContext, final String name, final String topic, final boolean syncSend,
+    public AdvancedKafkaManager(final LoggerContext loggerContext, final String name, final String topicPattern, final boolean syncSend,
                                 final Property[] properties, final String key) {
         super(loggerContext, name);
-        this.topic = Objects.requireNonNull(topic, "topic");
+        this.topicPattern = Objects.requireNonNull(topicPattern, "topicPattern");
         this.syncSend = syncSend;
         config.setProperty("key.serializer", "org.apache.kafka.common.serialization.ByteArraySerializer");
         config.setProperty("value.serializer", "org.apache.kafka.common.serialization.ByteArraySerializer");
@@ -81,7 +81,7 @@ public class AdvancedKafkaManager extends AbstractManager {
     private void closeProducer(final long timeout, final TimeUnit timeUnit) {
         if (producer != null) {
             // This thread is a workaround for this Kafka issue: https://issues.apache.org/jira/browse/KAFKA-1660
-           final Thread closeThread = new Log4jThread(new Runnable() {
+            final Thread closeThread = new Log4jThread(new Runnable() {
                 @Override
                 public void run() {
                     if (producer != null) {
@@ -100,17 +100,19 @@ public class AdvancedKafkaManager extends AbstractManager {
         }
     }
 
-    public void send(final byte[] msg) throws ExecutionException, InterruptedException, TimeoutException {
+    public void send(final String _topic, final byte[] msg) throws ExecutionException, InterruptedException, TimeoutException {
+        System.out.println("REİS YAKALA LAN" + _topic);
+
         if (producer != null) {
             byte[] newKey = null;
 
-            if(key != null && key.contains("${")) {
+            if (key != null && key.contains("${")) {
                 newKey = getLoggerContext().getConfiguration().getStrSubstitutor().replace(key).getBytes(StandardCharsets.UTF_8);
             } else if (key != null) {
                 newKey = key.getBytes(StandardCharsets.UTF_8);
             }
 
-            final ProducerRecord<byte[], byte[]> newRecord = new ProducerRecord<>(topic, newKey, msg);
+            final ProducerRecord<byte[], byte[]> newRecord = new ProducerRecord<>(_topic, newKey, msg);
             if (syncSend) {
                 final Future<RecordMetadata> response = producer.send(newRecord);
                 response.get(timeoutMillis, TimeUnit.MILLISECONDS);
@@ -131,8 +133,8 @@ public class AdvancedKafkaManager extends AbstractManager {
         producer = producerFactory.newKafkaProducer(config);
     }
 
-    public String getTopic() {
-        return topic;
+    public String getTopicPattern() {
+        return topicPattern;
     }
 
 }

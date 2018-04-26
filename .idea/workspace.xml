@@ -7,14 +7,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5de44dce-adca-4377-997d-0934d0a3a634" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/apache/logging/log4j/kafka/appender/AdvancedKafkaAppender.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/apache/logging/log4j/kafka/appender/AdvancedKafkaManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/apache/logging/log4j/kafka/appender/DefaultKafkaProducerFactory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/apache/logging/log4j/kafka/appender/KafkaProducerFactory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/org/apache/logging/log4j/kafka/appender/Starter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/Starter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/apache/logging/log4j/kafka/appender/AdvancedKafkaAppender.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/apache/logging/log4j/kafka/appender/AdvancedKafkaAppender.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/apache/logging/log4j/kafka/appender/AdvancedKafkaManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/apache/logging/log4j/kafka/appender/AdvancedKafkaManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/resources/log4j2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/log4j2.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -53,17 +47,35 @@
       <file leaf-file-name="log4j2.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/resources/log4j2.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="7" selection-start-line="7" selection-end-line="7" />
+            <state relative-caret-position="221">
+              <caret line="13" column="16" lean-forward="true" selection-start-line="13" selection-start-column="16" selection-end-line="20" selection-end-column="16" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AdvancedKafkaAppender.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="AdvancedKafkaAppender.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/org/apache/logging/log4j/kafka/appender/AdvancedKafkaAppender.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
+            <state relative-caret-position="325">
+              <caret line="89" column="9" lean-forward="true" selection-start-line="89" selection-start-column="9" selection-end-line="89" selection-end-column="9" />
+              <folding>
+                <element signature="method#setTopic#0;class#Builder#0;class#AdvancedKafkaAppender#0" />
+                <element signature="method#setSyncSend#0;class#Builder#0;class#AdvancedKafkaAppender#0" />
+                <element signature="method#setProperties#0;class#Builder#0;class#AdvancedKafkaAppender#0" />
+                <element signature="method#start#0;class#AdvancedKafkaAppender#0" />
+                <element signature="method#stop#0;class#AdvancedKafkaAppender#0" />
+                <element signature="e#8095#8096#0" expanded="true" />
+                <element signature="e#8155#8156#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PatternLayout.java" pinned="false" current-in-tab="false">
+        <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.logging.log4j/log4j-core/2.11.0/932392dc515dae4e750ac4a96c39ba69d5e81db3/log4j-core-2.11.0-sources.jar!/org/apache/logging/log4j/core/layout/PatternLayout.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="293">
+              <caret line="64" column="31" selection-start-line="64" selection-start-column="31" selection-end-line="64" selection-end-column="31" />
             </state>
           </provider>
         </entry>
@@ -80,20 +92,17 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Starter.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/java/org/apache/logging/log4j/kafka/appender/Starter.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="19" column="64" lean-forward="true" selection-start-line="19" selection-start-column="64" selection-end-line="19" selection-end-column="64" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AdvancedKafkaManager.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="AdvancedKafkaManager.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/org/apache/logging/log4j/kafka/appender/AdvancedKafkaManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="43" column="46" selection-start-line="43" selection-start-column="46" selection-end-line="43" selection-end-column="46" />
+            <state relative-caret-position="336">
+              <caret line="53" column="111" selection-start-line="53" selection-start-column="99" selection-end-line="53" selection-end-column="111" />
+              <folding>
+                <element signature="method#releaseSub#0;class#AdvancedKafkaManager#0" />
+                <element signature="method#closeProducer#0;class#AdvancedKafkaManager#0" />
+                <element signature="e#5450#5451#0" expanded="true" />
+                <element signature="e#5478#5479#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -110,8 +119,8 @@
       <file leaf-file-name="build.gradle" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/build.gradle">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="1" selection-start-column="1" selection-end-column="1" />
+            <state relative-caret-position="68">
+              <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
             </state>
           </provider>
         </entry>
@@ -129,6 +138,7 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>hayroManager</find>
+      <find>topicpattern</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -514,8 +524,10 @@
         <option value="$PROJECT_DIR$/src/test/java/Starter.java" />
         <option value="$PROJECT_DIR$/build.gradle" />
         <option value="$PROJECT_DIR$/src/main/java/org/apache/logging/log4j/kafka/appender/HayroAppender.java" />
-        <option value="$PROJECT_DIR$/src/test/resources/log4j2.xml" />
         <option value="$PROJECT_DIR$/src/test/java/org/apache/logging/log4j/kafka/appender/Starter.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/apache/logging/log4j/kafka/appender/AdvancedKafkaManager.java" />
+        <option value="$PROJECT_DIR$/src/test/resources/log4j2.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/org/apache/logging/log4j/kafka/appender/AdvancedKafkaAppender.java" />
       </list>
     </option>
   </component>
@@ -626,7 +638,7 @@
     <property name="GenerateAntBuildDialog.enableUiFormCompile" value="true" />
     <property name="GenerateAntBuildDialog.forceTargetJdk" value="true" />
     <property name="GenerateAntBuildDialog.outputFileNameProperty" value="log4j2-kafka-appender" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../logging-log4j2-master" />
     <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.45402297" />
@@ -750,12 +762,13 @@
       <window_info anchor="right" id="Palette&#9;" order="3" />
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.50053304" side_tool="true" weight="0.32928178" />
       <window_info anchor="right" id="Maven Projects" order="3" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.3403315" />
-      <window_info active="true" anchor="bottom" id="Version Control" order="7" visible="true" weight="0.32928178" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.42762432" />
+      <window_info anchor="bottom" id="Version Control" order="7" weight="0.09281768" />
       <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.49946696" weight="0.32928178" />
       <window_info id="Designer" order="2" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.336887" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.14765458" />
       <window_info anchor="bottom" id="Build" order="7" weight="0.32928178" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32928178" />
       <window_info anchor="right" id="Gradle" order="3" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -767,28 +780,27 @@
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32928178" />
     </layout>
     <layout-to-restore>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Gradle" order="4" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3403315" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.42762432" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.336887" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.14765458" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32928178" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32928178" />
       <window_info id="Designer" order="2" />
       <window_info id="UI Designer" order="3" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32928178" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3801105" />
       <window_info anchor="right" id="Palette&#9;" order="5" />
       <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.49946696" weight="0.32928178" />
       <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.50053304" side_tool="true" weight="0.32928178" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="Version Control" order="9" />
+      <window_info anchor="bottom" id="Version Control" order="9" weight="0.09281768" />
       <window_info anchor="bottom" id="Build" order="10" weight="0.32928178" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Messages" order="11" weight="0.32928178" />
@@ -963,6 +975,10 @@ c.newInstance();</expression-string>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="368">
           <caret line="70" column="46" selection-start-line="70" selection-start-column="46" selection-end-line="70" selection-end-column="46" />
+          <folding>
+            <element signature="e#2759#2760#0" expanded="true" />
+            <element signature="e#2796#2797#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -970,17 +986,17 @@ c.newInstance();</expression-string>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/apache/logging/log4j/kafka/appender/HayroAppender.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/org/apache/logging/log4j/kafka/appender/HayroManager.java" />
     <entry file="file://$PROJECT_DIR$/src/test/java/Starter.java" />
-    <entry file="file://$PROJECT_DIR$/build.gradle">
+    <entry file="file://$PROJECT_DIR$/src/test/java/org/apache/logging/log4j/kafka/appender/Starter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="1" selection-start-column="1" selection-end-column="1" />
+        <state relative-caret-position="289">
+          <caret line="19" column="64" lean-forward="true" selection-start-line="19" selection-start-column="64" selection-end-line="19" selection-end-column="64" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/resources/log4j2.xml">
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.logging.log4j/log4j-core/2.11.0/932392dc515dae4e750ac4a96c39ba69d5e81db3/log4j-core-2.11.0-sources.jar!/org/apache/logging/log4j/core/layout/AbstractStringLayout.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" selection-start-line="7" selection-end-line="7" />
+        <state relative-caret-position="293">
+          <caret line="97" column="22" selection-start-line="97" selection-start-column="22" selection-end-line="97" selection-end-column="22" />
         </state>
       </provider>
     </entry>
@@ -988,6 +1004,33 @@ c.newInstance();</expression-string>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
           <caret line="32" column="70" selection-start-line="32" selection-start-column="66" selection-end-line="32" selection-end-column="70" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/resources/log4j2.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" column="16" lean-forward="true" selection-start-line="13" selection-start-column="16" selection-end-line="20" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/apache/logging/log4j/kafka/appender/AdvancedKafkaManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="53" column="111" selection-start-line="53" selection-start-column="99" selection-end-line="53" selection-end-column="111" />
+          <folding>
+            <element signature="method#releaseSub#0;class#AdvancedKafkaManager#0" />
+            <element signature="method#closeProducer#0;class#AdvancedKafkaManager#0" />
+            <element signature="e#5450#5451#0" expanded="true" />
+            <element signature="e#5478#5479#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1001,24 +1044,26 @@ c.newInstance();</expression-string>
         </state>
       </provider>
     </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.logging.log4j/log4j-core/2.11.0/932392dc515dae4e750ac4a96c39ba69d5e81db3/log4j-core-2.11.0-sources.jar!/org/apache/logging/log4j/core/layout/PatternLayout.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="293">
+          <caret line="64" column="31" selection-start-line="64" selection-start-column="31" selection-end-line="64" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/apache/logging/log4j/kafka/appender/AdvancedKafkaAppender.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/org/apache/logging/log4j/kafka/appender/Starter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="19" column="64" lean-forward="true" selection-start-line="19" selection-start-column="64" selection-end-line="19" selection-end-column="64" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/apache/logging/log4j/kafka/appender/AdvancedKafkaManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="43" column="46" selection-start-line="43" selection-start-column="46" selection-end-line="43" selection-end-column="46" />
+        <state relative-caret-position="325">
+          <caret line="89" column="9" lean-forward="true" selection-start-line="89" selection-start-column="9" selection-end-line="89" selection-end-column="9" />
+          <folding>
+            <element signature="method#setTopic#0;class#Builder#0;class#AdvancedKafkaAppender#0" />
+            <element signature="method#setSyncSend#0;class#Builder#0;class#AdvancedKafkaAppender#0" />
+            <element signature="method#setProperties#0;class#Builder#0;class#AdvancedKafkaAppender#0" />
+            <element signature="method#start#0;class#AdvancedKafkaAppender#0" />
+            <element signature="method#stop#0;class#AdvancedKafkaAppender#0" />
+            <element signature="e#8095#8096#0" expanded="true" />
+            <element signature="e#8155#8156#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
