@@ -7,10 +7,10 @@
     <Filter type="ThresholdFilter" level="trace"/>
 
     <Appenders>
-        <Hayro name="Hayro" topic="log-test">
+        <AdvancedKafka name="AdvancedKafka" topic="log-test">
             <PatternLayout pattern="%date %message"/>
             <Property name="bootstrap.servers">localhost:9092</Property>
-        </Hayro>
+        </AdvancedKafka>
     </Appenders>
     <Loggers>
         <Root level="DEBUG">
