@@ -44,3 +44,4 @@ out/test/resources/log4j2.xml
 bin/main/log4j2.xml
 bin/test/log4j2.xml
 .settings/org.eclipse.buildship.core.prefs
+.idea/workspace.xml
