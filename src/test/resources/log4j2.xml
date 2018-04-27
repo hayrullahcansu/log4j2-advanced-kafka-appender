@@ -14,7 +14,7 @@
     </Appenders>
     <Loggers>
         <Root level="DEBUG">
-            <AppenderRef ref="Kafka"/>
+            <AppenderRef ref="AdvancedKafka"/>
         </Root>
         <Logger name="org.apache.kafka" level="INFO"/> <!-- avoid recursive logging -->
     </Loggers>
