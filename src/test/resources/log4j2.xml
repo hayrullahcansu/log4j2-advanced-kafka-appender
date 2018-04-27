@@ -7,8 +7,8 @@
     <Filter type="ThresholdFilter" level="trace"/>
 
     <Appenders>
-        <AdvancedKafka name="AdvancedKafka" topicPattern="log-test">
-            <PatternLayout pattern="%date %message"/>
+        <AdvancedKafka name="AdvancedKafka" topicPattern="platform.%property{component}.%class.%method.%level">
+            <PatternLayout pattern="%d [%t] %-5p %m%n"/>
             <Property name="bootstrap.servers">localhost:9092</Property>
         </AdvancedKafka>
     </Appenders>
