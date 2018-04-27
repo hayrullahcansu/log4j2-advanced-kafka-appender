@@ -47,14 +47,12 @@ public class AdvancedKafkaManager extends AbstractManager {
     private Producer<byte[], byte[]> producer;
     private final int timeoutMillis;
 
-    private final String topicPattern;
     private final String key;
     private final boolean syncSend;
 
-    public AdvancedKafkaManager(final LoggerContext loggerContext, final String name, final String topicPattern, final boolean syncSend,
+    public AdvancedKafkaManager(final LoggerContext loggerContext, final String name, final boolean syncSend,
                                 final Property[] properties, final String key) {
         super(loggerContext, name);
-        this.topicPattern = Objects.requireNonNull(topicPattern, "topicPattern");
         this.syncSend = syncSend;
         config.setProperty("key.serializer", "org.apache.kafka.common.serialization.ByteArraySerializer");
         config.setProperty("value.serializer", "org.apache.kafka.common.serialization.ByteArraySerializer");
@@ -133,8 +131,5 @@ public class AdvancedKafkaManager extends AbstractManager {
         producer = producerFactory.newKafkaProducer(config);
     }
 
-    public String getTopicPattern() {
-        return topicPattern;
-    }
 
 }
