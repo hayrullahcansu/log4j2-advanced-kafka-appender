@@ -18,6 +18,7 @@
 package org.apache.logging.log4j.kafka.appender;
 
 import java.io.Serializable;
+import java.io.UnsupportedEncodingException;
 import java.util.Objects;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
@@ -29,13 +30,11 @@ import org.apache.logging.log4j.core.Filter;
 import org.apache.logging.log4j.core.Layout;
 import org.apache.logging.log4j.core.LogEvent;
 import org.apache.logging.log4j.core.appender.AbstractAppender;
-import org.apache.logging.log4j.core.config.Configuration;
-import org.apache.logging.log4j.core.config.Node;
-import org.apache.logging.log4j.core.config.Property;
+import org.apache.logging.log4j.core.config.*;
 import org.apache.logging.log4j.core.config.plugins.*;
 import org.apache.logging.log4j.core.config.plugins.validation.constraints.Required;
 import org.apache.logging.log4j.core.layout.AbstractStringLayout;
-import org.apache.logging.log4j.core.layout.Encoder;
+import org.apache.logging.log4j.core.layout.PatternLayout;
 import org.apache.logging.log4j.core.layout.SerializedLayout;
 
 import static org.apache.logging.log4j.core.layout.PatternLayout.DEFAULT_CONVERSION_PATTERN;
@@ -48,9 +47,9 @@ import static org.apache.logging.log4j.core.layout.PatternLayout.newSerializerBu
 public final class AdvancedKafkaAppender extends AbstractAppender {
 
 
-
     private AbstractStringLayout.Serializer eventSerializer;
-
+    private Layout<? extends Serializable> topicLayout;
+    final static private String DefaultTopic = "advanced-kafka-appender";
 
     /**
      * Builds AdvancedKafkaAppender instances.
@@ -85,8 +84,8 @@ public final class AdvancedKafkaAppender extends AbstractAppender {
                 return null;
             }
             final AdvancedKafkaManager advancedKafkaManager =
-                    new AdvancedKafkaManager(getConfiguration().getLoggerContext(), getName(), topic, syncSend, properties, key);
-            return new AdvancedKafkaAppender(getName(), layout, getFilter(), isIgnoreExceptions(), advancedKafkaManager);
+                    new AdvancedKafkaManager(getConfiguration().getLoggerContext(), getName(), syncSend, properties, key);
+            return new AdvancedKafkaAppender(getName(), layout, getFilter(), isIgnoreExceptions(), advancedKafkaManager, topic,topicPattern);
         }
 
         public String getTopic() {
@@ -133,8 +132,8 @@ public final class AdvancedKafkaAppender extends AbstractAppender {
             return null;
         }
         final AdvancedKafkaManager advancedKafkaManager =
-                new AdvancedKafkaManager(configuration.getLoggerContext(), name, topicPattern, true, properties, key);
-        return new AdvancedKafkaAppender(name, layout, filter, ignoreExceptions, advancedKafkaManager);
+                new AdvancedKafkaManager(configuration.getLoggerContext(), name, true, properties, key);
+        return new AdvancedKafkaAppender(name, layout, filter, ignoreExceptions, advancedKafkaManager, DefaultTopic, topicPattern);
     }
 
     /**
@@ -150,7 +149,7 @@ public final class AdvancedKafkaAppender extends AbstractAppender {
     private final AdvancedKafkaManager manager;
 
     private AdvancedKafkaAppender(final String name, final Layout<? extends Serializable> layout, final Filter filter,
-                                  final boolean ignoreExceptions, final AdvancedKafkaManager manager) {
+                                  final boolean ignoreExceptions, final AdvancedKafkaManager manager,final String topic, final String topicPattern) {
         super(name, filter, layout, ignoreExceptions);
         this.manager = Objects.requireNonNull(manager, "manager");
 
@@ -160,6 +159,10 @@ public final class AdvancedKafkaAppender extends AbstractAppender {
                 .setNoConsoleNoAnsi(false)
                 .setPattern(topicPattern)
                 .setDefaultPattern(DEFAULT_CONVERSION_PATTERN)
+                .build();
+        topicLayout = PatternLayout.newBuilder()
+                .withPattern(topicPattern)
+                .withConfiguration(new DefaultConfiguration())
                 .build();
         System.out.println("hayro reis reis reis");
     }
@@ -180,7 +183,7 @@ public final class AdvancedKafkaAppender extends AbstractAppender {
     private void tryAppend(final LogEvent event) throws ExecutionException, InterruptedException, TimeoutException {
         final Layout<? extends Serializable> layout = getLayout();
         byte[] data;
-        String topic = "";
+
         if (layout instanceof SerializedLayout) {
             final byte[] header = layout.getHeader();
             final byte[] body = layout.toByteArray(event);
@@ -190,7 +193,8 @@ public final class AdvancedKafkaAppender extends AbstractAppender {
         } else {
             data = layout.toByteArray(event);
         }
-        manager.send(getTopic(event), data);
+        String topic = getTopicFromEvent(event);
+        manager.send(topic, data);
     }
 
     @Override
@@ -213,11 +217,26 @@ public final class AdvancedKafkaAppender extends AbstractAppender {
         return "AdvancedKafkaAppender{" +
                 "name=" + getName() +
                 ", state=" + getState() +
-                ", topic=" + manager.getTopicPattern() +
+                ", topic=" + +
                 '}';
     }
 
-    private String getTopic(final LogEvent event) {
-        return eventSerializer.toSerializable(event);
+    private String getTopicFromEvent(final LogEvent event) {
+        byte[] data;
+        String topic = "";
+        if (topicLayout instanceof SerializedLayout) {
+            final byte[] header = topicLayout.getHeader();
+            final byte[] body = topicLayout.toByteArray(event);
+            data = new byte[header.length + body.length];
+            System.arraycopy(header, 0, data, 0, header.length);
+            System.arraycopy(body, 0, data, header.length, body.length);
+        } else {
+            data = topicLayout.toByteArray(event);
+        }
+        try {
+            return new String(data,"UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            return DefaultTopic;
+        }
     }
 }
