@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration status="debug" strict="true" name="XMLConfigTest"
-               packages="org.apache.logging.log4j.kafka.appender">
+               packages="com.github.hayrullahcansu.log4j2.advanced.kafka.appender">
     <Properties>
         <Property name="filename">target/test.log</Property>
     </Properties>
