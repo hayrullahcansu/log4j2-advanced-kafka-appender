@@ -3,9 +3,12 @@ version '0.0.1'
 
 apply plugin: 'java'
 apply plugin: 'maven'
-apply plugin: 'ivy-publish'
+apply plugin: 'signing'
 
-sourceCompatibility = 1.8
+task sourcesJar(type: Jar) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
 
 repositories {
     mavenCentral()

@@ -98,8 +98,6 @@ public class AdvancedKafkaManager extends AbstractManager {
     }
 
     public void send(final String _topic, final byte[] msg) throws ExecutionException, InterruptedException, TimeoutException {
-        System.out.println("REİS YAKALA LAN" + _topic);
-
         if (producer != null) {
             byte[] newKey = null;
 
